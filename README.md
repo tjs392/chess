@@ -1,2 +1,2 @@
 # chess
-Stockfish inspired chess engine
+Chess engine
