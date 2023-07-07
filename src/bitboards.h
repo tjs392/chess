@@ -14,13 +14,13 @@ namespace Bitboards {
 
     //Bitboards for files and ranks used later
     constexpr Bitboard FileA = 0x101010101010101ULL;
-    constexpr BitBoard FileB = FileA << 1;
-    constexpr BitBoard FileC = FileA << 2;
-    constexpr BitBoard FileD = FileA << 3;
-    constexpr BitBoard FileE = FileA << 4;
-    constexpr BitBoard FileF = FileA << 5;
-    constexpr BitBoard FileG = FileA << 6;
-    constexpr BitBoard FileH = FileA << 7;
+    constexpr Bitboard FileB = FileA << 1;
+    constexpr Bitboard FileC = FileA << 2;
+    constexpr Bitboard FileD = FileA << 3;
+    constexpr Bitboard FileE = FileA << 4;
+    constexpr Bitboard FileF = FileA << 5;
+    constexpr Bitboard FileG = FileA << 6;
+    constexpr Bitboard FileH = FileA << 7;
 
     constexpr Bitboard Rank1 = 0xFF;
     constexpr Bitboard Rank2 = Rank1 << (8*1);

@@ -4,7 +4,7 @@ void Bitboards::init(){
 
     //Starting position for each piece
     Bitboard whitePawns = Rank2;
-    Bitboard whiteKnights = (FileB | FileG) & Rank1
+    Bitboard whiteKnights = (FileB | FileG) & Rank1;
     Bitboard whiteBishops = (FileC | FileF) & Rank1;
     Bitboard whiteRooks = (FileA | FileH) & Rank1;
     Bitboard whiteQueens = FileD & Rank1;
