@@ -46,6 +46,7 @@ namespace Bitboards {
     extern Bitboard blackQueens;
     extern Bitboard blackKing;
 
+
     extern Bitboard occupied;
     extern void updateOccupied();
 
