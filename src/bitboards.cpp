@@ -1,32 +1,22 @@
 #include "bitboards.h"
 
-void Bitboards::init(){
+void Board::init() {
 
-    //Starting position for each piece
-    Bitboard whitePawns = Rank2;
-    Bitboard whiteKnights = (FileB | FileG) & Rank1;
-    Bitboard whiteBishops = (FileC | FileF) & Rank1;
-    Bitboard whiteRooks = (FileA | FileH) & Rank1;
-    Bitboard whiteQueens = FileD & Rank1;
-    Bitboard whiteKing = FileE & Rank1;
+    white_pawns = Bitboards::Rank2;
+    white_knights = (Bitboards::FileB | Bitboards::FileG) & Bitboards::Rank1;
+    white_bishops = (Bitboards::FileC | Bitboards::FileF) & Bitboards::Rank1;
+    white_rooks = (Bitboards::FileA | Bitboards::FileH) & Bitboards::Rank1;
+    white_queens = Bitboards::FileD & Bitboards::Rank1;
+    white_king = Bitboards::FileE & Bitboards::Rank1;
 
-    Bitboard blackPawns = Rank7;
-    Bitboard blackKnights = (FileB | FileG) & Rank7;
-    Bitboard blackBishops = (FileC | FileF) & Rank7;
-    Bitboard blackRooks = (FileA | FileH) & Rank7;
-    Bitboard blackQueens = FileD & Rank7;
-    Bitboard blackKing = FileE & Rank7;
+    black_pawns = Bitboards::Rank7;
+    black_knights = (Bitboards::FileB | Bitboards::FileG) & Bitboards::Rank8;
+    black_bishops = (Bitboards::FileC | Bitboards::FileF) & Bitboards::Rank8;
+    black_rooks = (Bitboards::FileA | Bitboards::FileH) & Bitboards::Rank8;
+    black_queens = Bitboards::FileD & Bitboards::Rank8;
+    black_king = Bitboards::FileE & Bitboards::Rank8;
 
-    Bitboard occupied = whitePawns | whiteKnights | whiteBishops | whiteRooks | whiteQueens | whiteKing | blackPawns | blackKnights | blackBishops | blackRooks | blackQueens | blackKing;
+    occupied = white_pawns | white_knights | white_bishops | white_rooks | white_queens | white_king | black_pawns | black_knights | black_bishops | black_rooks | black_queens | black_king;
 
-    Side sideToMove = WHITE;
+    whiteToMove = true;
 }
-
-void Bitboards::updateOccupied(){
-    occupied = whitePawns | whiteKnights | whiteBishops | whiteRooks | whiteQueens | whiteKing | blackPawns | blackKnights | blackBishops | blackRooks | blackQueens | blackKing;
-}
-
-void Bitboards::updateSide(){
-    sideToMove = (sideToMove==WHITE) ? BLACK : WHITE;
-}
-
