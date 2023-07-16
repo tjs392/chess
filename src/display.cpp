@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-void displayBoard(Board& chess_board) {
+void displayBoard(Board& board) {
     std::cout << "  A B C D E F G H" << std::endl;
     std::cout << "  _ _ _ _ _ _ _ _" << std::endl;
 
@@ -12,42 +12,42 @@ void displayBoard(Board& chess_board) {
         int shift = 8 - rank;
         for (int file = 0; file < 8; file++) {
             Bitboard current = 1ULL << (rank * 7) + (file - shift);
-            if (chess_board.occupied & current) {
-                bool is_white = (chess_board.white_pawns & current)
-                    || (chess_board.white_knights & current)
-                    || (chess_board.white_bishops & current)
-                    || (chess_board.white_rooks & current)
-                    || (chess_board.white_queens & current)
-                    || (chess_board.white_king & current);
+            if (board.occupied & current) {
+                bool is_white = (board.white_pawns & current)
+                    || (board.white_knights & current)
+                    || (board.white_bishops & current)
+                    || (board.white_rooks & current)
+                    || (board.white_queens & current)
+                    || (board.white_king & current);
 
-                // Print the piece symbol
+                // Upper case for white, lower case for black
                 char piece_symbol;
                 if (is_white) {
-                    if (chess_board.white_pawns & current) {
+                    if (board.white_pawns & current) {
                         piece_symbol = 'P';
-                    } else if (chess_board.white_knights & current) {
+                    } else if (board.white_knights & current) {
                         piece_symbol = 'N';
-                    } else if (chess_board.white_bishops & current) {
+                    } else if (board.white_bishops & current) {
                         piece_symbol = 'B';
-                    } else if (chess_board.white_rooks & current) {
+                    } else if (board.white_rooks & current) {
                         piece_symbol = 'R';
-                    } else if (chess_board.white_queens & current) {
+                    } else if (board.white_queens & current) {
                         piece_symbol = 'Q';
-                    } else if (chess_board.white_king & current) {
+                    } else if (board.white_king & current) {
                         piece_symbol = 'K';
                     }
                 } else {
-                    if (chess_board.black_pawns & current) {
+                    if (board.black_pawns & current) {
                         piece_symbol = 'p';
-                    } else if (chess_board.black_knights & current) {
+                    } else if (board.black_knights & current) {
                         piece_symbol = 'n';
-                    } else if (chess_board.black_bishops & current) {
+                    } else if (board.black_bishops & current) {
                         piece_symbol = 'b';
-                    } else if (chess_board.black_rooks & current) {
+                    } else if (board.black_rooks & current) {
                         piece_symbol = 'r';
-                    } else if (chess_board.black_queens & current) {
+                    } else if (board.black_queens & current) {
                         piece_symbol = 'q';
-                    } else if (chess_board.black_king & current) {
+                    } else if (board.black_king & current) {
                         piece_symbol = 'k';
                     }
                 }

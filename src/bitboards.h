@@ -3,8 +3,10 @@
 
 #include <cstdint>
 
+
 using Bitboard = uint64_t;
 
+//Holds piece and game data for a single game instance
 struct Board {
     Bitboard white_pawns;
     Bitboard white_knights;
@@ -26,6 +28,7 @@ struct Board {
     void init();
 };
 
+//Constants for files and ranks on the bitboard for easier calculation
 namespace Bitboards {
 
     constexpr Bitboard FileA = 0x101010101010101ULL;
