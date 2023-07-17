@@ -28,6 +28,7 @@ struct PawnMove{
 //Targets and origins will also be stored as ints for simplicity sake
 std::vector<PawnMove> genPawnMove(Board& board, int origin, bool whiteToMove){
 
+    
     std::vector<PawnMove> moves;
 
     //Reserve 6 for memory (make sure to moves.clear() at the end of usage)

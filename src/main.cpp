@@ -2,19 +2,24 @@
 #include "display.h"
 #include <iostream>
 #include "lazygen.h"
+#include <chrono>
 
-int main(){
+int main() {
     Board board;
     board.init();
     displayBoard(board);
 
-    std::vector<PawnMove> moves = genPawnMove(board, 10, board.whiteToMove);
+    
 
-    for (int i = 0; i < moves.size(); i++){
-        std::cout << moves[i].target << std::endl;
-    }
+    auto start = std::chrono::high_resolution_clock::now();
 
-    std::cout << moves.size() << std::endl;
+    std::vector<PawnMove> move = genPawnMove(board, 9, board.whiteToMove);
+    
+
+    auto end = std::chrono::high_resolution_clock::now();
+
+    std::chrono::duration<double> time_taken = end - start;
+    std::cout << "Time taken by program is: " << time_taken.count() << " sec" << std::endl;
 
     return 0;
 }
