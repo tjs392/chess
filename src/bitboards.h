@@ -22,6 +22,8 @@ struct Board {
     Bitboard black_queens;
     Bitboard black_king;
 
+    Bitboard white_occupied;
+    Bitboard black_occupied;
     Bitboard occupied;
 
     bool whiteToMove;

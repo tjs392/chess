@@ -58,8 +58,8 @@ std::vector<PawnMove> genPawnMove(Board& board, int origin, bool whiteToMove){
         }
     }
     //Left and right capture
-    Bitboard left_capture = (whiteToMove) ? (origin_BB << 7) & board.occupied : (origin_BB >> 7) & board.occupied;
-    Bitboard right_capture = (whiteToMove) ? (origin_BB << 9) & board.occupied : (origin_BB >> 9) & board.occupied;
+    Bitboard left_capture = (whiteToMove) ? (origin_BB << 7) & board.occupied & ~Bitboards::FileA : (origin_BB >> 7) & board.occupied & ~Bitboards::FileH;
+    Bitboard right_capture = (whiteToMove) ? (origin_BB << 9) & board.occupied & ~Bitboards::FileH: (origin_BB >> 9) & board.occupied & ~Bitboards::FileA;
 
     if (left_capture){
         PawnMove left_cap;
@@ -81,5 +81,30 @@ std::vector<PawnMove> genPawnMove(Board& board, int origin, bool whiteToMove){
     //Deal with promotion and en passant later, I will need something to store previous moves** :)
 }
 
+
+
+//For knights, since the move is the same, but with multiple targets, I will be creating
+//A Bitboard for all possible knight moves. Only targets and origin is neccesary
+//Will test for capture directly after move is made
+
+Bitboard genKnightMoves(Board& board, int origin, bool whiteToMove){
+    Bitboard targets = 0;
+    Bitboard origin_BB = 1ULL << origin;
+
+    //For simplicity, I will just calculate each possible move and test the file/rank it is on
+    //In the future, will need optimization
+
+    //Clockwise starting from north-west-west
+    targets |= (origin_BB & ~Bitboards::FileA & ~Bitboards::FileB & ~Bitboards::Rank8) << 6;
+    targets |= (origin_BB & ~Bitboards::FileA & ~Bitboards::Rank7 & ~Bitboards::Rank8) << 15;
+    targets |= (origin_BB & ~Bitboards::FileH & ~Bitboards::Rank8 & ~Bitboards::Rank7) << 17;
+    targets |= (origin_BB & ~Bitboards::FileG & ~Bitboards::FileH & ~Bitboards::Rank8) << 10;
+    targets |= (origin_BB & ~Bitboards::FileG & ~Bitboards::FileH & ~Bitboards::Rank1) >> 6;
+    targets |= (origin_BB & ~Bitboards::FileH & ~Bitboards::Rank1 & ~Bitboards::Rank2) >> 15;
+    targets |= (origin_BB & ~Bitboards::FileA & ~Bitboards::Rank1 & ~Bitboards::Rank2) >> 17;
+    targets |= (origin_BB & ~Bitboards::FileA & ~Bitboards::FileB & ~Bitboards::Rank1) >> 10;
+
+    return (whiteToMove) ? targets & ~board.white_occupied : targets & ~board.black_occupied;
+}
 
 #endif
