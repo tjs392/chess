@@ -21,4 +21,42 @@ void Board::init() {
     occupied = white_occupied | black_occupied;
 
     whiteToMove = true;
+
+
+}
+
+void Board::clear() {
+    for (int i = 0; i < pieces.size(); i++) {
+        *(pieces[i]) = 0;
+    }
+    black_occupied = 0;
+    white_occupied = 0;
+    occupied = 0;
+}
+
+void Board::fill(Bitboard pieceMask, bool whitePiece, int pieceType) {
+    white_occupied |= pieceMask;
+    black_occupied |= pieceMask;
+
+    switch (pieceType) {
+        case PieceType::PAWN:
+            (whitePiece) ? white_pawns |= pieceMask : black_pawns |= pieceMask;
+            break;
+        case PieceType::KNIGHT:
+            (whitePiece) ? white_knights |= pieceMask : black_knights |= pieceMask;
+            break;
+        case PieceType::BISHOP:
+            (whitePiece) ? white_bishops |= pieceMask : black_bishops |= pieceMask;
+            break;
+        case PieceType::ROOK:
+            (whitePiece) ? white_rooks |= pieceMask : black_rooks |= pieceMask;
+            break;
+        case PieceType::QUEEN:
+            (whitePiece) ? white_queens |= pieceMask : black_queens |= pieceMask;
+            break;
+        case PieceType::KING:
+            (whitePiece) ? white_king |= pieceMask : black_king |= pieceMask;
+            break;
+    }
+    occupied = white_occupied | black_occupied;
 }

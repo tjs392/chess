@@ -2,7 +2,8 @@
 #define BITBOARDS_H
 
 #include <cstdint>
-
+#include <vector>
+#include <limits>
 
 using Bitboard = uint64_t;
 
@@ -28,6 +29,10 @@ struct Board {
 
     bool whiteToMove;
     void init();
+    void clear();
+    void fill(Bitboard pieceMask, bool whitePiece, int pieceType);
+    std::vector<Bitboard*> pieces = {&white_pawns, &white_knights, &white_bishops, &white_rooks, &white_queens, &white_king,
+                                    &black_pawns, &black_knights, &black_bishops, &black_rooks, &black_queens, &black_king};
 };
 
 //Constants for files and ranks on the bitboard for easier calculation
@@ -50,6 +55,16 @@ namespace Bitboards {
     constexpr Bitboard Rank6 = Rank1 << (8 * 5);
     constexpr Bitboard Rank7 = Rank1 << (8 * 6);
     constexpr Bitboard Rank8 = Rank1 << (8 * 7);
+
+};
+
+enum PieceType {
+    PAWN,
+    KNIGHT,
+    BISHOP,
+    ROOK,
+    QUEEN,
+    KING
 };
 
 #endif
