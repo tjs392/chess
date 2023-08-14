@@ -36,7 +36,7 @@ int main() {
         
 
         if (input >= 0 && input < 64) {
-            board.fill(Sliding::queenPseudoGen(input), true, BISHOP);
+            board.fill(Sliding::queenPseudoGen(input), true, ROOK);
             
             std::cout << "Mask for Index " << input << ":" << std::endl;
             displayBoard(board);
